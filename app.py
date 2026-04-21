@@ -54,13 +54,13 @@ st.markdown("""
     margin-bottom: 20px;
 }
 .user-msg {
-    background: #c8e6c9;
+    background: black;
     padding: 10px;
     border-radius: 10px;
     margin: 5px 0;
 }
 .ai-msg {
-    background: #fff3e0;
+    background: black;
     padding: 10px;
     border-radius: 10px;
     margin: 5px 0;

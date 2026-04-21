@@ -10,12 +10,23 @@ st.set_page_config(
     layout="wide"
 )
 
-# Load env
+# -------------------- API KEY (SAFE FOR LOCAL + CLOUD) --------------------
 load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
+
+api_key = None
+
+# Try Streamlit secrets (Cloud)
+try:
+    api_key = st.secrets.get("GOOGLE_API_KEY", None)
+except Exception:
+    api_key = None
+
+# Fallback to .env (Local)
+if not api_key:
+    api_key = os.getenv("GOOGLE_API_KEY")
 
 if not api_key:
-    st.error("❌ GOOGLE_API_KEY not found")
+    st.error("❌ GOOGLE_API_KEY not found. Add it in .env (local) or Secrets (cloud).")
     st.stop()
 
 genai.configure(api_key=api_key)
